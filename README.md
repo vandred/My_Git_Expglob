@@ -100,7 +100,7 @@ When the bug has been fixed, changes need to pour back into the main branch (mas
 1. First of all it is necessary to update the main branch (master) and mark a new version of the tag.
 
     $ git checkout master
-    # Switched to branch 'master'
+    Switched to branch 'master'
     $ git merge --no-ff hotfix-1.2.1
     # Merge made by recursive.
     # (Report on change)
