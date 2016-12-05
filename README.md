@@ -29,7 +29,7 @@ expglob
 
 The naming convention: anything except master, develop, release- *, or hotfix- *
 
-### Finished Adding functionality to develop
+#### Finished Adding functionality to develop
 
 Finished functionality (feature) is poured back into the development branch (the develop) and into the next release.
 
@@ -51,3 +51,14 @@ Finished functionality (feature) is poured back into the development branch (the
 - Must be put into: develop and master
 
 The naming convention: release- *
+
+
+#### Creating a release branch (release branch)
+
+    $ git checkout -b release-1.2 develop
+    #Switched to a new branch "release-1.2"
+    $ ./bump-version.sh 1.2
+    #Files modified successfully, version bumped to 1.2.
+    $ git commit -a -m "Bumped version number to 1.2"
+    #[Release-1.2 74d9424] Bumped version number to 1.2
+    #1 files changed, 1 insertions (+), 1 deletions (-)
