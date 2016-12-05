@@ -62,3 +62,16 @@ The naming convention: release- *
     $ git commit -a -m "Bumped version number to 1.2"
     # [Release-1.2 74d9424] Bumped version number to 1.2
     # 1 files changed, 1 insertions (+), 1 deletions (-)
+
+#### Closing release branch
+
+The first two steps in Git:
+
+    $ git checkout master
+    # Switched to branch 'master'
+    $ git merge --no-ff release-1.2
+    # Merge made by recursive.
+    # (Report on change)
+    $ git tag -a 1.2
+
+Now release issued and tagged.
