@@ -3,7 +3,7 @@ expglob
 
 ## Main branches
 
-#### The central repository contains two main branches exist all the time:
+### The central repository contains two main branches exist all the time:
 
 1. master
 2. develop
@@ -13,7 +13,7 @@ expglob
 
 ## Ancillary branches
 
-#### We use the following types of branches:
+### We use the following types of branches:
 
 1. Branches of functionality (Feature branches)
 2. The release branch (Release branches)
@@ -22,7 +22,7 @@ expglob
 
 ## Rules
 
-#### Finished Adding functionality to develop
+### Finished Adding functionality to develop
 
 Finished functionality (feature) is poured back into the development branch (the develop) and into the next release.
 
