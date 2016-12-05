@@ -34,12 +34,12 @@ The naming convention: anything except master, develop, release- *, or hotfix- *
 Finished functionality (feature) is poured back into the development branch (the develop) and into the next release.
 
     $ git checkout develop
-    #Switched to branch 'develop'
+    # Switched to branch 'develop'
     $ git merge --no-ff myfeature
-    #Updating ea1b82a..05e9557
-    #(Report on change)
+    # Updating ea1b82a..05e9557
+    # (Report on change)
     $ git branch -d myfeature
-    #Deleted branch myfeature (was 05e9557).
+    # Deleted branch myfeature (was 05e9557).
     $ git push origin develop
 
 **--no-ff** flag causes Git to always create a new commit object with a merger, even if the merger could be effected algorithm fast-forward. This allows you to save the information that there was a branch, and groups together all the modifications.
@@ -56,9 +56,9 @@ The naming convention: release- *
 #### Creating a release branch (release branch)
 
     $ git checkout -b release-1.2 develop
-    #Switched to a new branch "release-1.2"
+    # Switched to a new branch "release-1.2"
     $ ./bump-version.sh 1.2
-    #Files modified successfully, version bumped to 1.2.
+    # Files modified successfully, version bumped to 1.2.
     $ git commit -a -m "Bumped version number to 1.2"
-    #[Release-1.2 74d9424] Bumped version number to 1.2
-    #1 files changed, 1 insertions (+), 1 deletions (-)
+    # [Release-1.2 74d9424] Bumped version number to 1.2
+    # 1 files changed, 1 insertions (+), 1 deletions (-)
