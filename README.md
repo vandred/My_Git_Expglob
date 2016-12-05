@@ -93,7 +93,7 @@ The naming convention: hotfix- *
     # [Hotfix-1.2.1 41e61bb] Bumped version number to 1.2.1
     # 1 files changed, 1 insertions (+), 1 deletions (-)
     
-### Closing patch branch (hotfix branch)
+#### Closing patch branch (hotfix branch)
 
 When the bug has been fixed, changes need to pour back into the main branch (master), as well as in the development branch (develop), to ensure that this correction would be in the next release. This is very similar to how close the release branch (release branch).
 
