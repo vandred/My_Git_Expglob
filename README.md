@@ -22,7 +22,7 @@ expglob
 
 ## Rules
 
-Finished Adding functionality to develop
+#### Finished Adding functionality to develop
 
 Finished functionality (feature) is poured back into the development branch (the develop) and into the next release.
 
@@ -34,3 +34,5 @@ Finished functionality (feature) is poured back into the development branch (the
     $ git branch -d myfeature
     #Deleted branch myfeature (was 05e9557).
     $ git push origin develop
+
+**--no-ff** flag causes Git to always create a new commit object with a merger, even if the merger could be effected algorithm fast-forward. This allows you to save the information that there was a branch, and groups together all the modifications.
