@@ -12,3 +12,9 @@ expglob
 
 
 ## Ancillary branches
+
+#### We use the following types of branches:
+
+1. Branches of functionality (Feature branches)
+2. The release branch (Release branches)
+3. Branches of patch (Hotfix branches)
