@@ -114,4 +114,8 @@ When the bug has been fixed, changes need to pour back into the main branch (mas
         # Merge made by recursive.
         # (Report on change)
     
+3. Finally, delete the temporary branch:
+
+        $ Git branch -d hotfix-1.2.1
+        # Deleted branch hotfix-1.2.1 (was abbe5d6).
     
