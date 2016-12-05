@@ -22,6 +22,13 @@ expglob
 
 ## Rules
 
+### Branch of functional (feature branches)
+
+- Can be generated from: develop
+- Must be put into: develop
+
+The naming convention: anything except master, develop, release- *, or hotfix- *
+
 ### Finished Adding functionality to develop
 
 Finished functionality (feature) is poured back into the development branch (the develop) and into the next release.
