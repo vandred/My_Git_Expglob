@@ -16,7 +16,7 @@ expglob
 ### We use the following types of branches:
 
 1. Branches of functionality (Feature branches)
-2. The release branch (Release branches)
+2. Branches of release (Release branches)
 3. Branches of patch (Hotfix branches)
 
 
@@ -43,3 +43,11 @@ Finished functionality (feature) is poured back into the development branch (the
     $ git push origin develop
 
 **--no-ff** flag causes Git to always create a new commit object with a merger, even if the merger could be effected algorithm fast-forward. This allows you to save the information that there was a branch, and groups together all the modifications.
+
+
+### Branches of release (release branches)
+
+- Can be generated from: develop
+- Must be put into: develop and master
+
+The naming convention: release- *
