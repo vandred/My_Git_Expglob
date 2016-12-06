@@ -1,0 +1,344 @@
+﻿@using Abp.Web.Mvc.Extensions
+@using Xocv.Authorization
+@using Xocv.Web.Navigation
+@using Abp.Application.Services.Dto
+
+@model Xocv.Web.Areas.Mpa.Models.Dynasty.PatientIndexViewModel
+@*model  Xocv.Web.Areas.Mpa.Models.Dynasty.PatientCreateViewModel*@
+
+@section Scripts
+{
+	@Html.IncludeScript("~/Areas/Mpa/Common/Scripts/Form.js")
+	@Html.IncludeScript("~/Areas/Mpa/Views/Patient/Index.js")
+}
+
+<div class="row margin-bottom-5">
+	<div class="col-xs-6">
+		<div class="page-head">
+			<div class="page-title">
+				<h1>
+					<span>Patients</span>
+					<small>@L("PatientsHeaderInfo")</small>
+				</h1>
+			</div>
+		</div>
+	</div>
+	<div class="col-xs-6 text-right">
+		@*@if (IsGranted(AppPermissions.Pages_Administration_Companies_Create))*@
+		@*{*@
+		<button type="button" id="CreateNewPatientButton" class="btn btn-primary blue _actionButton" data-action="modal"
+		        data-modal="create">
+			<i class="fa fa-plus"></i>@L("CreateNewPatient")
+		</button>
+        @*<div>@Html.ActionLink("Generate New Patients", "GeneratePatiens")</div>*@
+		@*}*@
+	</div>
+</div>
+
+<div class="portlet light margin-bottom-0">
+	<div class="portlet-body">
+
+		<div class="form">
+			<form class="horizontal-form" id="filterForm">
+				<div class="form-body" enter-key="vm.getCompanies()">
+					<div class="row margin-bottom-10">
+						<div class="col-md-12">
+							<div class="inputs inputs-full-width">
+								<div class="portlet-input">
+										<div class="col-xs-10 form-group">
+											@Html.DropDownList(
+											"OrganisationUnitId", Model.OrganisationUnits.Select(i => i.ToSelectListItem()),
+											new
+											{
+											@class = "form-control selectpicker _formClean",
+											data_live_search = "true",
+											data_none_selected_text = L("FilterByOrganisationUnit"),
+											id = "filterClinicianId"
+											})
+										</div>
+
+										<div class="col-xs-2 text-center form-contol">
+											<button id="searchButton" type="button" class="btn blue _actionButton" data-action="search">
+												<i class="fa fa-search"></i> Search
+											</button>
+										</div>
+
+										<div class="form-group  col-xs-12 col-lg-6">
+											<div class=" input-group">
+												<input class="form-control _formClean" id="filterName" type="text" placeholder='@L("Name")'>
+												<div class="input-group-addon"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></div>
+											</div>
+										</div>
+
+										<div class="form-group  col-xs-12 col-lg-6">
+											<div class=" input-group ">
+												<input class="form-control _formClean" id="filterSecurity" type="text"
+												       placeholder='@L("SecurityNumber")'>
+												<div class="input-group-addon"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></div>
+											</div>
+										</div>
+
+
+										<!--<div class="form-group input-group col-xs-12 col-lg-5 pull-left">
+											<input id="CompaniesTableFilter" class="form-control" placeholder='@L("SearchWithThreeDot")'
+											       type="text" value="">
+											<span class="input-group-btn">
+												<button id="GetCompaniesButton" class="btn default" type="submit"><i class="icon-magnifier"></i></button>
+											</span>
+										</div>-->
+
+										<!--Selects-->
+
+										<div class="form-group col-xs-12 col-lg-4 ">
+                                            <select class="form-control _formClean" id="filterGender" name="gender">
+                                                <option value="" selected="selected">Select Gender</option>
+                                                @if (Model.ListGender != null)
+                                                {
+                                                    foreach (var item in Model.ListGender)
+                                                    {
+                                                        <option value="@item">@item</option>
+                                                    }
+                                                }
+                                            </select>
+										</div>
+
+										<div class="form-group col-xs-12 col-lg-4 ">
+											<select class="form-control _formClean" id="filterLanguage" name="language">
+												<option value="" selected="selected">Select Language</option>
+                                                @if (Model.ListLanguage != null)
+                                                {
+                                                    foreach (var item in Model.ListLanguage)
+                                                    {
+                                                        <option value="@item" >@item</option>
+                                                    }
+                                                }
+											</select>
+										</div>
+
+										<div class="form-group col-xs-12 col-lg-4 ">
+											<select class="form-control _formClean" id="filterPayor" name="payor">
+												<option value="" selected="selected">Select Payor</option>
+                                                @if (Model.ListPayor != null)
+                                                {
+                                                    foreach (var item in Model.ListPayor)
+                                                    {
+                                                        <option value="@item" >@item</option>
+                                                    }
+                                                }
+											</select>
+										</div>
+
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+			</form>
+		</div>
+
+		<div id="PatientsTable"></div>
+
+		@*Html.DropDownList(
+		"OrganisationUnitId", Model.OrganisationUnits.Select(i => i.ToSelectListItem()),
+		new
+		{
+		@class = "form-control selectpicker filterDD",
+		data_live_search = "true",
+		data_none_selected_text = L("FilterByOrganisationUnit"),
+		id = "OrganisationUnitId"
+		}
+		)*@
+		@*
+		<div>@Html.ActionLink("Generate New Patients", "GeneratePatiens")</div>
+		<table class="table">
+			<tr>
+				<th>#</th>
+				<th>Date/Time</th>
+				<th>Account</th>
+				<th>Patient</th>
+				<th>Clinician</th>
+				<th>Payor</th>
+				<th>Screening</th>
+				<th>Cost</th>
+				<th>Total Score</th>
+				<th>Result</th>
+
+			</tr>
+			@foreach (var item in Model.ListPatient)
+			{
+			if (Model.ListPatient != null)
+			{
+			<tr>
+				<td>
+					@Html.DisplayFor(modelItem => item.FirstName)
+				</td>
+
+				<td>
+					@Html.DisplayFor(modelItem => item.LastName)
+				</td>
+
+				<td>
+					@Html.DisplayFor(modelItem => item.Gender)
+				</td>
+
+				<td>item.OrganizationUnit.DisplayName</td>
+
+				<td>@Html.ActionLink("Details", "PatientDetails", new { id = item.Id })</td>
+
+				<td></td>
+
+				<td></td>
+
+				<td></td>
+
+				<td></td>
+
+				<td></td>
+
+			</tr>
+			}
+
+			}
+
+		</table>
+	</div>
+	*@
+
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="patientModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content panel ">
+			<div class="modal-header panel-heading">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="myModalLabel">Patient Information</h4>
+			</div>
+			<div class="modal-body">
+				<div class="progress hidden">
+					<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100"
+					     aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+						<span class="sr-only">45% Complete</span>
+					</div>
+				</div>
+				<div id="result" class="result">
+
+					<div class="col-md-12">
+						<!--<h4>Patient Information</h4>-->
+						<!--<hr />-->
+
+						<input type="hidden" id="Patient_ID" name="id">
+
+						<div class="form-horizontal">
+							@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+							<div class="form-group">
+								<label class="control-label col-md-2">Clinician</label>
+								<div class="col-md-10">
+									@Html.DropDownList(
+									"OrganisationUnitId", Model.OrganisationUnits.Select(i => i.ToSelectListItem()),
+									new
+									{
+										@class = "form-control selectpicker _formFill",
+										data_live_search = "true",
+										data_none_selected_text = L("FilterByOrganisationUnit"),
+										id = "Patient_ClinicianId"
+									})
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="control-label col-md-2">SNN</label>
+								<div class="col-md-10">
+									<input id="Patient_SocialSecurityNumber" class="form-control text-box single-line _formFill"
+									       name="Patient.SocialSecurityNumber" type="text" value="">
+									<span class="field-validation-valid text-danger" data-valmsg-for="Patient.SocialSecurityNumber" data-valmsg-replace="true"></span>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-md-2" for="Patient_FirstName">FirstName</label>
+								<div class="col-md-10">
+									<input id="Patient_FirstName" class="form-control text-box single-line _formFill" name="Patient.FirstName"
+									       type="text" value="">
+									<span class="field-validation-valid text-danger" data-valmsg-for="Patient.FirstName" data-valmsg-replace="true"></span>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-md-2" for="Patient_LastName">LastName</label>
+								<div class="col-md-10">
+									<input id="Patient_LastName" class="form-control text-box single-line _formFill" name="Patient.LastName"
+									       type="text" value="">
+									<span class="field-validation-valid text-danger" data-valmsg-for="Patient.LastName" data-valmsg-replace="true"></span>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="control-label col-md-2" for="Patient_DateOfBirth">DateOfBirth</label>
+								<div class="col-md-10">
+									<div class="input-group date" data-provide="datepicker">
+										<input id="Patient_DateOfBirth" class="form-control _formFill" type="text"  name="end" placeholder="" autocomplete="off" >
+										<div class="input-group-addon">
+											<span class="fa fa-calendar"></span>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<!--<div class="form-group">
+								<label class="control-label col-md-2" for="Patient_DateOfBirth">DateOfBirth</label>
+								<div class="col-md-10">
+									<input type="date" id="Patient_DateOfBirth" name="DateOfBirth" class="form-control" />
+								</div>
+							</div>-->
+
+							<div class="form-group">
+								<label class="control-label col-md-2" for="Patient_Gender">Gender</label>
+								<div class="col-md-10">
+									<select id="Patient_Gender" name="gender" class="form-control _formFill">
+										<option value="@Xocv.Dynasty.Gender.Female">@Xocv.Dynasty.Gender.Female</option>
+										<option value="@Xocv.Dynasty.Gender.Male">@Xocv.Dynasty.Gender.Male</option>
+									</select>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="control-label col-md-2" for="Patient_Language">Language</label>
+								<div class="col-md-10">
+									<select id="Patient_Language" name="language" class="form-control _formFill">
+										<option value="@Xocv.Dynasty.Language.English">@Xocv.Dynasty.Language.English</option>
+										<option value="@Xocv.Dynasty.Language.Spanish">@Xocv.Dynasty.Language.Spanish</option>
+									</select>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="control-label col-md-2" for="Patient_Payor">Payor</label>
+								<div class="col-md-10">
+									<select id="Patient_Payor" name="payor" class="form-control _formFill">
+										<option value="@Xocv.Dynasty.Payor.Commercial">@Xocv.Dynasty.Payor.Commercial</option>
+										<option value="@Xocv.Dynasty.Payor.Medicaid">@Xocv.Dynasty.Payor.Medicaid</option>
+										<option value="@Xocv.Dynasty.Payor.Medicare">@Xocv.Dynasty.Payor.Medicare</option>
+										<option value="@Xocv.Dynasty.Payor.SelfPay">@Xocv.Dynasty.Payor.SelfPay</option>
+									</select>
+								</div>
+							</div>
+
+					</div>
+					<div class="clearfix"></div>
+				</div>
+					<div class="clearfix"></div>
+			</div>
+			<div class="modal-footer">
+				<button id="" type="button" class="btn cancelButton" data-dismiss="modal">
+					@L("Cancel")
+				</button>
+				<button id="SavePatientButton" type="button" class="btn blue save-button _actionButton" data-action="save">
+					<i class="fa fa-save"></i> <span class="btnText">@L("Create")</span>
+				</button>
+			</div>
+		</div>
+		</div>
+	</div>
+</div>

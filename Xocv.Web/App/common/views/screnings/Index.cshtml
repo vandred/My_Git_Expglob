@@ -1,0 +1,104 @@
+﻿@model  Xocv.Web.Areas.Mpa.Models.Dynasty.ScreenPatientView
+
+
+<div class="row margin-bottom-5">
+	<div class="col-xs-6">
+		<div class="page-head">
+			<div class="page-title">
+				<h1>
+					<span>Screening List</span>
+					<small>@L("ListOfScreenings")</small>
+				</h1>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="portlet light margin-bottom-0">
+	<div class="portlet-body">
+        
+		@*<div> 
+			<p>
+				 1--- @Html.ActionLink("Parse From Excel", "Parse")
+			</p>
+            <p>
+               2--- @Html.ActionLink("Add Spanish", "Spanish")
+            </p>
+
+			<div>
+				<p>
+					3---- @Html.ActionLink("Generate Screenings", "GenerateScreen")
+				</p>
+			</div>
+		</div>*@
+
+
+		@using (Html.BeginForm("VotePatient", "Screening", FormMethod.Post))
+		{
+		@Html.AntiForgeryToken()
+
+		<div>
+			@Html.DropDownList(
+			"PatientId", Model.ListPatient.Select(i => new SelectListItem()
+			{
+			Text = i.FirstName + " " + i.LastName,
+			Value = i.Id.ToString()
+
+			}),
+			new
+			{
+			@class = "form-control selectpicker",
+			data_live_search = "true",
+			data_none_selected_text = L("PatientSelector"),
+			id = "PatientId"
+			})
+
+		</div>
+			<hr>
+			<br/>
+
+		<table class="table table-striped table-hover">
+			<thead></thead>
+			<tbody>
+			@foreach (var item in Model.ListScreening)
+			{
+				<tr>
+					<td>
+						<input id="@item.Id" value="@item.Id" type="radio" name="questionId">
+					</td>
+					<td class="text-center" style="min-width:70px;width:auto;">
+						<div>@item.Type</div>
+					</td>
+					<td>
+						@item.CountAnswers
+					</td>
+					<td class="text-center" style="min-width:150px;width:auto;">
+						@item.Category
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Measurements)
+					</td>
+					<td style="min-width:200px;width:auto;">@Html.ActionLink("Instuctions Html Editor",
+						"EditReportInstructionsHtml", "Screening",  new { id =
+						item.Type }, null)</td>
+					<td style="min-width:200px;width:auto;">@Html.ActionLink("Details", "Details", new { id = item.Id})
+						||@Html.ActionLink("Spanish Details",
+						"Details", new { id = item.Id, lng="Spanish" }) </td>
+					<td></td>
+				</tr>
+			}
+			</tbody>
+		</table>
+
+			<div class="clearfix"></div>
+
+		<div class="form-group">
+			<div class="col-md-offset-2 col-md-10">
+				<input type="submit" value="Select" class="btn btn-default"/>
+			</div>
+		</div>
+		}
+
+		<div class="clearfix"></div>
+	</div>
+</div>

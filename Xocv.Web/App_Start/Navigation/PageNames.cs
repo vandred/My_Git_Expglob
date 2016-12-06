@@ -27,6 +27,15 @@ namespace Xocv.Web.Navigation
                 public const string Dashboard = "Dashboard.Tenant";
                 public const string Settings = "Administration.Settings.Tenant";
             }
+            public static class Patient
+            {
+            }
+
+            public static class Screening
+            {
+            }
+
+
         }
 
         public static class Frontend

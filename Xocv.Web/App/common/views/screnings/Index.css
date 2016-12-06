@@ -1,0 +1,14 @@
+﻿.score-circle{
+  height: 50px;
+  width: 50px;
+  margin: auto;
+  background-color: darkgray;
+	border: 1px solid gray;
+  color: white;
+  text-align: center;
+  line-height: 50px;
+  font-weight: 900;
+}
+button, button *{
+	user-select: none;
+}

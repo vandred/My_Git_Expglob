@@ -37,7 +37,26 @@ namespace Xocv.Web.App.Startup
                     icon: "icon-home",
                     requiredPermissionName: AppPermissions.Pages_Tenant_Dashboard
                     )
-                ).AddItem(new MenuItemDefinition(
+                )
+                .AddItem(new MenuItemDefinition(
+                    PageNames.App.Tenant.Dashboard,
+                    L("Screening"),
+                    url: "tenant.dashboard",
+                    icon: "icon-home",
+                    requiredPermissionName: AppPermissions.Pages_Tenant_Dashboard
+                    )
+                )
+                .AddItem(new MenuItemDefinition(
+                    PageNames.App.Tenant.Dashboard,
+                    L("Patient"),
+                    url: "tenant.dashboard",
+                    icon: "icon-home",
+                    requiredPermissionName: AppPermissions.Pages_Tenant_Dashboard
+                    )
+                )
+
+
+                .AddItem(new MenuItemDefinition(
                     PageNames.App.Common.Administration,
                     L("Administration"),
                     icon: "icon-wrench"
