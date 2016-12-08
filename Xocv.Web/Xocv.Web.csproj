@@ -494,6 +494,9 @@
     <Content Include="App\common\views\organizationUnits\index.min.css">
       <DependentUpon>index.css</DependentUpon>
     </Content>
+    <Content Include="App\common\views\patient\Index.js" />
+    <Content Include="App\common\views\patient\Index.min.js" />
+    <Content Include="App\common\views\patient\Index.min.min.js" />
     <Content Include="App\common\views\profile\changePicture.css">
       <DependentUpon>changePicture.less</DependentUpon>
     </Content>
@@ -503,6 +506,10 @@
     <Content Include="App\common\views\profile\linkAccountModal.js" />
     <Content Include="App\common\views\profile\linkedAccountsModal.js" />
     <Content Include="App\common\views\notifications\settingsModal.js" />
+    <Content Include="App\common\views\screnings\Index.css" />
+    <Content Include="App\common\views\screnings\Index.min.css" />
+    <Content Include="App\common\views\screnings\ScreeningsResults.js" />
+    <Content Include="App\common\views\screnings\ScreeningsResults.min.js" />
     <Content Include="App\common\views\users\createOrEditModal.css">
       <DependentUpon>createOrEditModal.less</DependentUpon>
     </Content>
@@ -549,6 +556,10 @@
     <Content Include="Common\Images\ws-federation.png" />
     <Content Include="Common\Scripts\Chat\chat.js" />
     <Content Include="Common\Scripts\Chat\chat.signalr.js" />
+    <Content Include="Common\Scripts\dynasty\Form.js" />
+    <Content Include="Common\Scripts\dynasty\Form.min.js" />
+    <Content Include="Common\Scripts\dynasty\Form.min.min.js" />
+    <Content Include="Common\Scripts\dynasty\getBySelect.js" />
     <Content Include="Common\Scripts\LocalStorage\localStorage.js" />
     <Content Include="Common\Scripts\LocalStorage\localStorage.localForage.js" />
     <Content Include="Common\Scripts\passwordComplexityHelper.js" />
@@ -2858,6 +2869,15 @@
     <Content Include="Abp\Framework\styles\abp.mixings.css.map" />
     <Content Include="Abp\Framework\styles\abp.less" />
     <Content Include="Abp\Framework\styles\abp.css.map" />
+    <Content Include="App\common\views\patient\Index.coffee" />
+    <Content Include="App\common\views\patient\Index.cshtml" />
+    <Content Include="App\common\views\patient\Index.js.map" />
+    <Content Include="App\common\views\screnings\Index.cshtml" />
+    <Content Include="App\common\views\screnings\ScreeningsResults.coffee" />
+    <Content Include="App\common\views\screnings\ScreeningsResults.cshtml" />
+    <Content Include="App\common\views\screnings\ScreeningsResults.js.map" />
+    <Content Include="Common\Scripts\dynasty\Form.coffee" />
+    <Content Include="Common\Scripts\dynasty\Form.js.map" />
     <None Include="Scripts\jquery-3.1.1-vsdoc.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
     <Content Include="Scripts\jquery-3.1.1.min.js" />
@@ -3116,10 +3136,7 @@
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App\common\views\patient\" />
-    <Folder Include="App\common\views\screnings\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

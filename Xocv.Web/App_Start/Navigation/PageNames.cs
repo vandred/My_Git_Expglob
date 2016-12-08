@@ -29,10 +29,12 @@ namespace Xocv.Web.Navigation
             }
             public static class Patient
             {
+                public const string Patients = "Patient.List";
             }
 
             public static class Screening
             {
+                public const string Screenings = "Screening.List";
             }
 
 

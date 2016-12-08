@@ -175,6 +175,21 @@ appModule.config([
                 templateUrl: '~/App/tenant/views/settings/index.cshtml'
             });
         }
+
+
+        //Dynasty
+        $stateProvider.state('patients.index', {
+            url: '/patients',
+            templateUrl: '~/App/common/views/patient/Index.cshtml'
+        });
+        
+
+        $stateProvider.state('screenings.index', {
+            url: '/screenings',
+            templateUrl: '~/App/common/views/screnings/Index.cshtml'
+        });
+
+
     }
 ]);
 

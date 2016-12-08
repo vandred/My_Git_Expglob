@@ -39,18 +39,18 @@ namespace Xocv.Web.App.Startup
                     )
                 )
                 .AddItem(new MenuItemDefinition(
-                    PageNames.App.Tenant.Dashboard,
+                    PageNames.App.Screening.Screenings,
                     L("Screening"),
-                    url: "tenant.dashboard",
-                    icon: "icon-home",
+                    url: "screenings.index",
+                    icon: "glyphicon glyphicon-list-alt",
                     requiredPermissionName: AppPermissions.Pages_Tenant_Dashboard
                     )
                 )
                 .AddItem(new MenuItemDefinition(
-                    PageNames.App.Tenant.Dashboard,
+                    PageNames.App.Patient.Patients,
                     L("Patient"),
-                    url: "tenant.dashboard",
-                    icon: "icon-home",
+                    url: "patients.index",
+                    icon: "icon-users",
                     requiredPermissionName: AppPermissions.Pages_Tenant_Dashboard
                     )
                 )

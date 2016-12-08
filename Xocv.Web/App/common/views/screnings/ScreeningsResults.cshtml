@@ -1,8 +1,5 @@
 ﻿@using Abp.Web.Mvc.Extensions
 
-
-@model Xocv.Web.Areas.Mpa.Models.Dynasty.ScreeningsResultsViewModel
-
 @section Styles
 {
     @Html.IncludeStyle("~/Areas/Mpa/Views/Screening/Index.min.css")
@@ -11,7 +8,6 @@
 @section Scripts
 {
     @Html.IncludeScript("~/Areas/Mpa/Views/Screening/ScreeningsResults.js")
-    @*<script type="text/javascript" src="/Areas/Mpa/Views/Screening/ScreeningsResults.js"></script>*@
 }
 
 
@@ -129,69 +125,6 @@
         </div>
         <div id="ScreeningsResultsTable"></div>
 
-        @*Html.DropDownList(
-            "OrganisationUnitId", Model.OrganisationUnits.Select(i => i.ToSelectListItem()),
-            new
-            {
-                @class = "form-control selectpicker filterDD",
-                data_live_search = "true",
-                data_none_selected_text = L("FilterByOrganisationUnit"),
-                id = "OrganisationUnitId"
-            }
-        )*@
-        @*<div>@Html.ActionLink("Generate New Patients", "GeneratePatiens")</div>
-        <table class="table">
-            <tr>
-                <th>#</th>
-                <th>Date/Time</th>
-                <th>Account</th>
-                <th>Patient</th>
-                <th>Clinician</th>
-                <th>Payor</th>
-                <th>Screening</th>
-                <th>Cost</th>
-                <th>Total Score</th>
-                <th>Result</th>
-
-            </tr>
-            @foreach (var item in Model.ListPatient)
-            {
-                if (Model.ListPatient != null)
-                {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.FirstName)
-                        </td>
-
-                        <td>
-                            @Html.DisplayFor(modelItem => item.LastName)
-                        </td>
-
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Gender)
-                        </td>
-
-                        <td>item.OrganizationUnit.DisplayName</td>
-
-                        <td>@Html.ActionLink("Details", "PatientDetails", new { id = item.Id })</td>
-
-                        <td></td>
-
-                        <td></td>
-
-                        <td></td>
-
-                        <td></td>
-
-                        <td></td>
-
-                    </tr>
-                }
-
-            }
-
-        </table>
-    </div>*@
 
 </div>
 
