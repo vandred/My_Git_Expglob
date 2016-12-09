@@ -18,19 +18,25 @@
 
         let isEnabled: boolean;
 
+        let tenantIdCookieName: string;
+
+        function setTenantIdCookie(tenantId?: number): void;
+
+        function getTenantIdCookie(): number;
+
     }
 
     interface IAbpSession {
 
-        userId?: number;
+        readonly userId?: number;
 
-        tenantId?: number;
+        readonly tenantId?: number;
 
-        impersonatorUserId?: number;
+        readonly impersonatorUserId?: number;
 
-        impersonatorTenantId?: number;
+        readonly impersonatorTenantId?: number;
 
-        multiTenancySide: multiTenancy.sides;
+        readonly multiTenancySide: multiTenancy.sides;
 
     }
 
@@ -89,6 +95,18 @@
 
         function areAllGranted(...args: string[]): boolean;
 
+        let tokenCookieName: string;
+
+        /**
+         * Saves auth token.
+         * @param authToken The token to be saved.
+         * @param expireDate Optional expire date. If not specified, token will be deleted at end of the session.
+         */
+        function setToken(authToken: string, expireDate?: Date): void;
+
+        function getToken(): string;
+
+        function clearToken(): void;
     }
 
     namespace features {
@@ -109,7 +127,7 @@
 
     }
 
-    namespace settings {
+    namespace setting {
 
         let values: { [name: string]: string };
 
@@ -119,6 +137,14 @@
 
         function getInt(name: string): number;
 
+        enum settingScopes {
+
+            Application = 1,
+
+            Tenant = 2,
+
+            User = 4
+        }
     }
 
     namespace nav {
@@ -320,7 +346,7 @@
 
         function truncateString(str: string, maxLength: number): string;
 
-        function truncateStringWithPostfix(str: string, maxLength: number, postfix: string): string;
+        function truncateStringWithPostfix(str: string, maxLength: number, postfix?: string): string;
 
         function isFunction(obj: any): boolean;
 
@@ -328,18 +354,32 @@
 
         /**
         * Sets a cookie value for given key.
+        * This is a simple implementation created to be used by ABP.
+        * Please use a complete cookie library if you need.
         * @param {string} key
         * @param {string} value 
-        * @param {Date} expireDate Optional expire date (default: 30 days).
+        * @param {Date} expireDate (optional). If not specified the cookie will expire at the end of session.
+        * @param {string} path (optional)
         */
-        function setCookieValue(key: string, value: string, expireDate?: Date): void;
+        function setCookieValue(key: string, value: string, expireDate?: Date, path?: string): void;
 
         /**
         * Gets a cookie with given key.
+        * This is a simple implementation created to be used by ABP.
+        * Please use a complete cookie library if you need.
         * @param {string} key
-        * @returns {string} Cookie value
+        * @returns {string} Cookie value or null
         */
         function getCookieValue(key: string): string;
+
+        /**
+         * Deletes cookie for given key.
+         * This is a simple implementation created to be used by ABP.
+         * Please use a complete cookie library if you need.
+         * @param {string} key
+         * @param {string} path (optional)
+         */
+        function deleteCookie(key: string, path?: string): void;
     }
 
     namespace timing {
