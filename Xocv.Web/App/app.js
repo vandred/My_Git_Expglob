@@ -178,16 +178,22 @@ appModule.config([
 
 
         //Dynasty
-        $stateProvider.state('patients.index', {
-            url: '/patients',
-            templateUrl: '~/App/common/views/patient/Index.cshtml'
-        });
-        
 
-        $stateProvider.state('screenings.index', {
-            url: '/screenings',
-            templateUrl: '~/App/common/views/screnings/Index.cshtml'
+        $stateProvider.state('screenings', {
+            'abstract': true,
+            url: '/screening',
+            template: '<div ui-view class="fade-in-up"></div>'
         });
+
+
+        if (abp.auth.hasPermission('Pages.Tenant.Dashboard')) {
+            $urlRouterProvider.otherwise("/tenant/dashboard"); //Entrance page for a tenant
+            $stateProvider.state('screenings.index', {
+            url: '/screenings',
+            templateUrl: '~/App/common/views/screnings/index.cshtml'
+        });
+        }
+
 
 
     }

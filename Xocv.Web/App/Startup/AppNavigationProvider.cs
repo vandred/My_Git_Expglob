@@ -38,23 +38,13 @@ namespace Xocv.Web.App.Startup
                     requiredPermissionName: AppPermissions.Pages_Tenant_Dashboard
                     )
                 )
-                .AddItem(new MenuItemDefinition(
+                                .AddItem(new MenuItemDefinition(
                     PageNames.App.Screening.Screenings,
                     L("Screening"),
                     url: "screenings.index",
-                    icon: "glyphicon glyphicon-list-alt",
-                    requiredPermissionName: AppPermissions.Pages_Tenant_Dashboard
+                    icon: "glyphicon glyphicon-list-alt"
                     )
                 )
-                .AddItem(new MenuItemDefinition(
-                    PageNames.App.Patient.Patients,
-                    L("Patient"),
-                    url: "patients.index",
-                    icon: "icon-users",
-                    requiredPermissionName: AppPermissions.Pages_Tenant_Dashboard
-                    )
-                )
-
 
                 .AddItem(new MenuItemDefinition(
                     PageNames.App.Common.Administration,
